@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router";
 import registerLottie from "../../assets/lottie/register-lottie.json";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../providers/AuthContext";
+import GoogleLogin from "../../features/auth/GoogleLogin";
 const Register = () => {
-	const { createUser, setUser, updateUser, googleSignIn, setLoading } = use(AuthContext);
+	const { createUser, setUser, updateUser, setLoading } = use(AuthContext);
 	const navigate = useNavigate();
 	const handleRegister = (e) => {
 		e.preventDefault();
@@ -95,10 +96,12 @@ const Register = () => {
 						>
 							Register
 						</button>
+
 						<p className="text-center mt-3 text-base">
 							Have An Account ? <Link to="/login">Login</Link>
 						</p>
 					</div>
+					<GoogleLogin />
 				</form>
 			</div>
 			<div className="w-1/2">

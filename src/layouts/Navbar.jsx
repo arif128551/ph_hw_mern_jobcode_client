@@ -22,7 +22,7 @@ const Navbar = () => {
 		</>
 	);
 	return (
-		<div className="bg-base-200">
+		<div className="bg-blue-50 py-5">
 			<div className="navbar container max-w-7xl mx-auto">
 				<div className="navbar-start">
 					<div className="dropdown">
@@ -41,23 +41,33 @@ const Navbar = () => {
 							{listItems}
 						</ul>
 					</div>
-					<a className="btn btn-ghost text-2xl font-extrabold">Job Code</a>
+					<Link to={"/"} className="text-2xl font-extrabold">
+						<span className="text-blue-500">Career</span> Code
+					</Link>
 				</div>
 				<div className="navbar-center hidden lg:flex">
-					<ul className="menu menu-horizontal px-1">{listItems}</ul>
+					<ul className="menu-horizontal px-1 hover:text-blue-500 font-semibold">{listItems}</ul>
 				</div>
 				<div className="navbar-end gap-3">
 					{user ? (
-						<button className="btn btn-primary" onClick={handleLogout}>
+						<button
+							className="bg-blue-500 py-2.5 px-6 rounded-lg text-white cursor-pointer font-semibold"
+							onClick={handleLogout}
+						>
 							Logout
 						</button>
 					) : (
 						<>
-							{" "}
-							<Link className="btn btn-primary" to={"/login"}>
+							<Link
+								className="py-2.5 px-6 rounded-lg text-black hover:underline cursor-pointer hover:text-blue-500 hover:-translate-y-0.5 transition duration-200 font-semibold"
+								to={"/login"}
+							>
 								Login
 							</Link>
-							<Link className="btn btn-accent" to={"/register"}>
+							<Link
+								className="bg-blue-500 pt-2.5 pb-3 px-6 rounded-lg text-white cursor-pointer hover:bg-blue-950 hover:-translate-y-0.5 transition duration-200 font-semibold"
+								to={"/register"}
+							>
 								Register
 							</Link>
 						</>

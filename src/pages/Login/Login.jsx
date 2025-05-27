@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import loginLottie from "../../assets/lottie/login-lottie.json";
 import { AuthContext } from "../../providers/AuthContext";
 import toast from "react-hot-toast";
+import GoogleLogin from "../../features/auth/GoogleLogin";
 const Login = () => {
 	const { signInUserWithEmailPass, googleSignIn, setLoading } = use(AuthContext);
 	const location = useLocation();
@@ -60,6 +61,7 @@ const Login = () => {
 						>
 							Login
 						</button>
+						<GoogleLogin />
 						<p className="text-center mt-3 text-base">
 							Dont’t Have An Account ? <Link to="/register">Register</Link>
 						</p>
