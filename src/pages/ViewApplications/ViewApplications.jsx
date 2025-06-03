@@ -7,7 +7,7 @@ const ViewApplications = () => {
 	const applications = useLoaderData();
 	const handleSelectStatus = (e, applicationId) => {
 		axios
-			.patch(`http://localhost:3000/api/applications/status/${applicationId}`, { status: e.target.value })
+			.patch(`http://localhost:3000/api/applications/status/${applicationId}`)
 			.then((response) => {
 				if (response.data.modifiedCount) {
 					toast.success("Application status updated");

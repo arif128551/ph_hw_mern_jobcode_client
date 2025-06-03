@@ -1,23 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { use } from "react";
 import PageLoader from "../../components/PageLoader";
 import toast from "react-hot-toast";
 import UseAuth from "../../hooks/UseAuth";
 import ApplicationRow from "./ApplicationRow";
+import MyApplicationsApiPromise from "../../api/MyApplicationsApiPromise";
+import MyApplicationTbody from "./MyApplicationTbody";
 
 const MyApplications = () => {
 	const { user } = UseAuth();
-	const { isPending, error, data } = useQuery({
-		queryKey: ["my-applications"],
-		queryFn: () =>
-			fetch(`http://localhost:3000/api/my-applications?email=${user.email}`, { credentials: "include" }).then((res) =>
-				res.json()
-			),
-	});
+	// const { isPending, error, data } = useQuery({
+	// 	queryKey: ["my-applications"],
+	// 	queryFn: () =>
+	// 		user.getIdToken().then((token) =>
+	// 			fetch(`http://localhost:3000/api/my-applications?email=${user.email}`, {
+	// 				headers: {
+	// 					Authorization: `Bearer ${token}`,
+	// 				},
+	// 			}).then((res) => res.json())
+	// 		),
+	// });
 
-	if (isPending) return <PageLoader />;
+	// if (isPending) return <PageLoader />;
 
-	if (error) return toast.error(error.message);
+	// if (error) return toast.error(error.message);
+
+	const { applicationsApiPromise } = MyApplicationsApiPromise();
 
 	return (
 		<div className="container mx-auto">
@@ -32,11 +40,7 @@ const MyApplications = () => {
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
-						{data.map((application, index) => (
-							<ApplicationRow key={application._id} application={application} index={index}></ApplicationRow>
-						))}
-					</tbody>
+					<MyApplicationTbody applicationsApiPromise={applicationsApiPromise(user.email)}></MyApplicationTbody>
 					<tfoot>
 						<tr>
 							<th>#</th>
