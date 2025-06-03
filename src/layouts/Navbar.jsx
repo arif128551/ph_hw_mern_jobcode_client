@@ -19,6 +19,19 @@ const Navbar = () => {
 			<li>
 				<NavLink to={"/"}>Home</NavLink>
 			</li>
+			{user && (
+				<>
+					<li>
+						<NavLink to={"/my-applications"}>My Applications</NavLink>
+					</li>
+					<li>
+						<NavLink to={"/jobs/add"}>Add Jobs</NavLink>
+					</li>
+					<li>
+						<NavLink to={"/posted-jobs"}>My Jobs</NavLink>
+					</li>
+				</>
+			)}
 		</>
 	);
 	return (
@@ -42,11 +55,11 @@ const Navbar = () => {
 						</ul>
 					</div>
 					<Link to={"/"} className="text-2xl font-extrabold">
-						<span className="text-blue-500">Career</span> Code
+						<span className="text-blue-500">Career</span>Code
 					</Link>
 				</div>
 				<div className="navbar-center hidden lg:flex">
-					<ul className="menu-horizontal px-1 hover:text-blue-500 font-semibold">{listItems}</ul>
+					<ul className="menu-horizontal gap-10 px-1 font-semibold">{listItems}</ul>
 				</div>
 				<div className="navbar-end gap-3">
 					{user ? (

@@ -6,20 +6,20 @@ import { AuthContext } from "../../providers/AuthContext";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../features/auth/GoogleLogin";
 const Login = () => {
-	const { signInUserWithEmailPass, googleSignIn, setLoading } = use(AuthContext);
+	const { signInUserWithEmailPass, setLoading } = use(AuthContext);
 	const location = useLocation();
 	const navigate = useNavigate();
+	const from = location.state || "/";
 	const handleLogin = (e) => {
 		e.preventDefault();
 		const form = e.target;
 		const email = form.email.value;
 		const password = form.password.value;
-		console.log(email, password);
 
 		signInUserWithEmailPass(email, password)
 			.then(() => {
 				toast.success("Welcome back! You have successfully logged in.");
-				navigate(location.state || "/");
+				navigate(from);
 			})
 			.catch((error) => {
 				if (error.code === "auth/wrong-password") {
@@ -61,7 +61,7 @@ const Login = () => {
 						>
 							Login
 						</button>
-						<GoogleLogin />
+						<GoogleLogin from={from} />
 						<p className="text-center mt-3 text-base">
 							Dont’t Have An Account ? <Link to="/register">Register</Link>
 						</p>
